@@ -38,7 +38,7 @@ example_parameters = {
         # 'user_set_load': 'Yes',
         # These are useful for GigE cameras
         # 'device_link_throughput_limit': 380000000,
-        'gev_scps_packet_size': 9000,
+        # 'gev_scps_packet_size': 9000,
         # ---- to reduce the sensor width and shift the crop
         'image_width': 704,
         'image_height': 540,

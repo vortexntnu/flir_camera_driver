@@ -110,11 +110,19 @@ Camera::NodeInfo::NodeInfo(const std::string & n, const std::string & nodeType) 
 }
 Camera::Camera(rclcpp::Node * node, const std::string & prefix, bool useStatus)
 {
-  rclcpp::QoS qos =
-    rclcpp::QoS(rclcpp::KeepLast(1)).reliability(RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
 
   node_ = node;
   name_ = prefix;
+
+  bool reliable_qos = node_->declare_parameter<bool>("reliable_qos", false);
+  rclcpp::QoS qos(rclcpp::KeepLast(1));
+  if (reliable_qos) {
+    LOG_INFO("Using reliable QoS");
+    qos.reliability(RMW_QOS_POLICY_RELIABILITY_RELIABLE);
+  } else {
+    LOG_INFO("Using best effort QoS");
+    qos.reliability(RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
+  }
 
   prefix_ = prefix.empty() ? std::string("") : (prefix + ".");
   topicPrefix_ = prefix.empty() ? std::string("") : (prefix + "/");
