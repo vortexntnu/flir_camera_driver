@@ -4,7 +4,6 @@ echo ""
 echo -e "\e[32mStarting spinnaker_camera_driver setup script\e[0m"
 echo ""
 
-
 while true; do
 read -p "Add the flirimaging group? (y/n)? " yn
 case $yn in
