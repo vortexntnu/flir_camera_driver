@@ -1,0 +1,9 @@
+name: Semantic Release
+
+on:
+  push:
+    branches:
+      - humble-devel
+jobs:
+  call_reusable_workflow:
+    uses: vortexntnu/vortex-ci/.github/workflows/reusable-semantic-release.yml@main
